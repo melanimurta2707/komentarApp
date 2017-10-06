@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+      <meta charset="UTF-8">
+	  <title>Left Side Menu App template</title>
+	  <link rel="stylesheet" type="text/css" href="w3/codemirror.css">
+	  <script type="text/javascript" src="w3/codemirror.js"></script>
+	  
+	  <met name="viewport" content="initial-scale=1.0,
+	  maximum-scale=1.0, minimum-scale=1.0, user-scalable=0;">
+	  
+	  <link rel="stylesheet" type="text/css" href="css/af.ui.css">
+	  <link rel="stylesheet" type="text/css" href="css/icons.css">
+	  <link rel="stylesheet" type="text/css" href="css/menu_main.less.css" class="main-less">
+	  <script type="text/javascript" charset="utf-8" src="js/appframework.ui.min.js"></script>
+	  <!--AppFramework plugin for sliding side menu-->
+	  <script type="text/javascript" charset="utf-8" src="js/af.slidemenu.js"></script>
+	  
+	  <!-- Required if packaging to native app using Intel XDK -->
+	  <script src="intelxdk.js"></script>
+	  <script src="xhr.js"></script>
+	  
+	  <script>
+	         function onDeviceReady () {
+			    $.ui.launch();
+				intel.xdk.device.hideSplashScreen();
+			}
+			document.addEventListener("intel.xdk.device.ready",onDeviceReady. false);
+	  <script>
+	  <!-- end Intel XDK cide -->
+	  
+	  <script>
+	      $.ui.autoLaunch = false;
+		  $.ui.animateHeaders = false;
+		  
+		  $(document).ready(function(){
+		      $.ui.setSideMenuWidth('260px');
+			  $.ui.launch();
+			  $("#komentar").on("clink", function(){
+			      komen ();
+			});
+		});
+		function komen() {
+		var data = $("#inputkomen").serialize();
+		   $.post("http://(192.168.43.136)/server/input_komentar.php", data, function(data){
+		             
+					 if(data.status == 'isi_data'){
+					      // alert("Mohon isi data dengan lengkap !");
+						    swal("Mohon isi data dengan lengkap !", "...", "info")
+						}
+					else if(data.status == "sukses"){
+					     // alert('Terimakasih atas kritik / saran / komentar anda !');
+						    swal({
+						
+						title: "Terimakasih atas kritik / saran / komentar anda !",
+						text: "",
+						type: "success",
+						showCancelButton: false
+						confirmButtonColor: "#DD6B55",
+						confirButtonText: "OK !",
+						cancelButtonText: "Tidak !",
+						closeOnConfirm: true,
+						closeOnCancel: true
+						
+						},
+						
+						function (isConfirm) {
+						    if (isConfirm) {
+							   window.location='index.html';
+							   return false
+							 }
+							 else {
+							 
+							     return false;
+							}
+							
+						});
+						
+						         }
+								 else if(data.status == 'gagal'){
+								       alert("Error on query!");
+									   
+								 }
+								 
+					 });
+					 
+					 
+					}
+					</script>
+					<link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+					<script src="js/sweetalert.min.js" type="text/javascript"></script>
+					<script type="application/javascript" src="js/themeRelease.js"></script>
+					<script src="cordova.js"></script>
+					
+					
+					</head>
+					
+					<body class="ios">
+					
+					   <div id="afui">
+					   
+					       <!--Left Side Menu Navigation bar -->
+						   <nav>
+						        <ul class="list">
+								    <li><a href="#pagel1" class=icon home">Home</a>
+									</li>
+									
+									<li><a href="#page5" class="icon massage"><Kritik/ Saran/ Komentar</a>
+									</li>
+									
+								</ul>
+							 </nav>
+							  
+							 <div id="content" style+"">
+							 
+							    <!--Main View Pages-->
+								<div class="panel" title="Home" id="pagel" data-footer="none" selected="true">
+								    <header>
+									   <a id="menubadge" onclick="$.ui.toggleSideMenu()" Class="menuButton" style="float:left!important"></a>
+									   <h1>Home</h1>
+									  </header>
+									  
+									  <p><h2><center>
+									     <!--Selamat Datang : <div iid="datane"></div><p> -->
+										 
+										 <div class="widget uib_w_3 ui-content no_wrap outset-margin d-margins"
+										 data-uib="jquery_mobile/listview" data-ver="0">
+										            <ul id="datanel1" data-role="listview">
+													</ul>
+													Judul </h2> </b>
+													
+													<h4 style="padding:15px;">Uraian</p>
+													<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+													
+													
+													<!-- <button onClink="keluar()" value="keluar">keluar -->
+													                 </div>
+																	 
+																	 
+																	 
+														 <div class="panel" title="Kritik/ Saran/ Komentar" id="page5" data-footer="none"> 
+															 <header>
+															 <a id="menubadge" onclink="$.ui.toggleSideMenu()" Class="menuButton" style="float:left !important"></a>
+															<h1>Kritik/ Saran/ Komentar</h1>
+															</header>
+															<div><form id="inputkomen">
+	                                                        <p style="padding: 15px; ">
+															
+													<input name="nama" type="text" placeholder="Nama" />
+                                                    <input name="instansi" type="text" placeholder=Instansi / Sekolah" />
+                                                    <input name="hp" type="text" placeholder="No. HP / WA" />
+                                                    <input name="email" type="text" placeholder="Email" />
+                                                    <textarea name="komentar" placeholder="Kritik / Saran / Komentar" rows="6"></textarea>
+                                                    <a class="button green" href="#" id="komentar">Kirim</a>
+                                                    </p></form></div>
+
+													</div>
+                                               
+											   </div
+	     
+ 		         </div>
+          </div
+         </body>
+
+	  </html>																				  
+																				   			
